@@ -42,10 +42,10 @@ all: $(TARGET)
 # Requires main.cpp and all header files.
 main.o: main.cpp stacker.h
 	$(CC) $(CFLAGS) -c main.cpp
-  
+
 ## stacker.o
 # Requires stacker header and implementation files.
-	stacker.o: stacker.cpp stacker.h
+stacker.o: stacker.cpp stacker.h
 
 ## clean
 # Removes all unnecessary files including objects (*.o) and emacs backup (*~) files.
