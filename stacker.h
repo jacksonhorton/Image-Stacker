@@ -29,7 +29,7 @@ class Stacker {
  * @brief 
  *
  */
-  stuct pixel {
+  struct pixel {
     int r, g, b;
   };
 
@@ -52,12 +52,14 @@ class Stacker {
   
 
 public:
+  Stacker();
   Stacker(std::string filename, int numFiles);
+  
   void stack();
   void read_file();
   void average();
   
-  
+  std::string genSpecificName(std::string filename, int count);
 
 };
 
