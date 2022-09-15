@@ -43,16 +43,16 @@ class Stacker {
   int max_color;
 
   //Maximum number of files to read from; used in average().
-  int num_of_files;
+  int numFiles;
 
-  
+  //Name of folder and 
   std::string filename;
   std::string magic_number;
   std::vector<pixel> pixels;
   
 
 public:
-  Stacker(std::string filename, int num_of_files);
+  Stacker(std::string filename, int numFiles);
   void stack();
   void read_file();
   void average();
