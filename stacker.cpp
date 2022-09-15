@@ -30,6 +30,15 @@ void stacker::read_file(int fileIndex) {
   //open file
   fin.open(filepath);
 
+  string stacker::genSpecificName(string filename, int count) {
+  string sfName;
+
+  string num = count;
+
+  
+  if(count < 10) { //if count is a single digit
+    sfName = filename + "/" + filename + "_0" + "0" + num + ".ppm"
+
   // read header
   if (fileIndex == 0) {
     fin >> magic_number >> height >> width >> max_color;
@@ -48,7 +57,10 @@ void stacker::read_file(int fileIndex) {
     i++;
     fin >> pixels[i].r >> pixels[i].g >> pixels[i].b;
     cout << pixels[i].r << pixels[i].g << pixels[i].b << endl;
+  else if (count >= 10) { //if count is a double digit
+    sfName = filename + "/" + filename + "_0" + num + ".ppm"
   }
 
   fin.close();
+  return sfName;
 }

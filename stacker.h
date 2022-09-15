@@ -59,7 +59,7 @@ public:
   void read_file(int fileIndex);
   void average();
   
-  
+  std::string genSpecificName(std::string filename, int count);
 
 };
 
