@@ -11,7 +11,7 @@
  */
 class Stacker {
  public:
-  Stacker();
+  Stacker(string filename, int num_of_files);
   void stack();
   void read_file();
   void average();
@@ -19,12 +19,14 @@ class Stacker {
   
  private:
   stuct pixel {
-    int red, green, blue;
+    int r, g, b;
   };
 
   int width;
   int height;
   int max_color;
+  int num_of_files;
+  std::string filename;
   std::string magic_number;
   std::vector<pixel> pixels;
   
