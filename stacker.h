@@ -10,6 +10,8 @@
 #ifndef STACKER_H
 #define STACKER_H
 
+#include <string>
+#include <vector>
 
 /**
  * The Stacker class will read the color values from all the pixels in an image into a vector of pixels. It will get important information like the width and height of the ppm image, the magic_number, and the max_color will be gathered from the first image read and applied to the final composition. Once all of the pixels are read into the pixel vector, the values for each pixel are averaged. Then, the final composition can be made.
@@ -19,7 +21,7 @@
  * @brief Stacker will take multiple images and average the values of their pixels to create a prettier image.
  *
  */
-class Stacker {
+class stacker {
  private:
 
 /**
@@ -29,8 +31,8 @@ class Stacker {
  * @brief 
  *
  */
-  stuct pixel {
-    int r, g, b;
+  struct pixel {
+    int r, g, b = 0;
   };
 
   //Height of image in pixels (column)
@@ -52,9 +54,9 @@ class Stacker {
   
 
 public:
-  Stacker(std::string filename, int numFiles);
+  stacker(std::string filename, int numFiles);
   void stack();
-  void read_file();
+  void read_file(int fileIndex);
   void average();
   
   
