@@ -10,8 +10,11 @@ using namespace std;
 stacker::stacker(string filename, int numFiles) {
   this->filename = filename;
   this->numFiles = numFiles;
-  
-  width, height, max_color = 0;
+
+  magic_number = "";
+  width = 0;
+  height = 0;
+  max_color = 0;
   
   vector<pixel> pixels;
 }
@@ -51,25 +54,41 @@ void stacker::read_file(int fileIndex) {
   //open file
   fin.open(filepath);
 
-  // read header
+  
+  //on first file, read in header info
   if (fileIndex == 0) {
-    fin >> magic_number >> height >> width >> max_color;
+    cout << "Extracting header..." << endl;
+    fin >> magic_number >> width >> height >> max_color;
   }
+  //for the other files, skip the header
   else {
-    string temp;
-    getline(fin, temp);
-    getline(fin, temp);
-    getline(fin, temp);
+    string junk;
+    getline(fin, junk);
+    getline(fin, junk);
+    getline(fin, junk);
   }
 
-  //read in pixels
-  int i;
-  fin >> pixels[i].r >> pixels[i].g >> pixels[i].b;
+  // read in the pixels from the body
+  int r, g, b;
+  int i = 0;  //counter
+  fin >> r >> g >> b;  // priming read
+    
+  // read through body; reads each pixel's rgb value into pixels vector
   while (fin) {
+    // if the index in pixels doesn't yet contain a pixel, push one to it; this should only run on the first iteration
+    if (i >= pixels.size()) {
+      pixels.push_back(pixel());
+    }
+    // appends the value 
+    pixels[i].r += r;
+    pixels[i].g += g;
+    pixels[i].b += b;
+    
+    fin >> r >> g >> b;  // read next line or break file
+    // increment index counter
     i++;
-    fin >> pixels[i].r >> pixels[i].g >> pixels[i].b;
-    cout << pixels[i].r << pixels[i].g << pixels[i].b << endl;
   }
 
   fin.close();
 }
+
