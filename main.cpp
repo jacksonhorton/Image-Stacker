@@ -31,9 +31,7 @@ int main() {
   stacker image(filename, numFiles);
 
   //Calling stack method to start stacking.
-  //image.stack();
-
-  image.read_file(1);
+  image.stack();
   
   return 0;
 }

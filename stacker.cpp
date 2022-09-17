@@ -37,7 +37,7 @@ string stacker::genSpecificName(string filename, int fileNum) {
     sfName = filename + "/" + filename + "_" + num + ".ppm";
 
   // returns the specific file name and path based on the filename and current file number given
-  cout << sfName << endl;
+
   return sfName;
 }
 
@@ -51,6 +51,8 @@ void stacker::read_file(int fileIndex) {
   // generates a string of the filepath; passes fileNum which is +1 the file index
   filepath = stacker::genSpecificName(filename, fileNum);
 
+  cout << "Reading file: " << filepath << endl;
+  
   //open file
   fin.open(filepath);
 
@@ -79,6 +81,7 @@ void stacker::read_file(int fileIndex) {
     if (i >= pixels.size()) {
       pixels.push_back(pixel());
     }
+    
     // appends the value 
     pixels[i].r += r;
     pixels[i].g += g;
@@ -89,6 +92,42 @@ void stacker::read_file(int fileIndex) {
     i++;
   }
 
+  cout << "Loaded." << endl;
   fin.close();
 }
 
+void stacker::stack() {
+
+  // read in all files
+  for (int i = 0; i < numFiles; i++) {
+    read_file(i);
+  }
+
+  // averages the vector using fileNum
+  average();
+
+  cout << "Writing out file: " << filename << ".ppm" << endl;
+
+  //writes out file
+  ofstream outFile;
+  outFile.open(filename + ".ppm");
+
+  //writes header
+  outFile << magic_number << "\n" << width << " " << height
+	  << "\n" << max_color << "\n";
+  //writes body
+  for (int i = 0; i < pixels.size(); i++) {
+     outFile << pixels[i].r << " " << pixels[i].g << " "
+	     <<  pixels[i].b << "\n";
+  }
+
+  outFile.close();
+}
+
+void stacker::average() {
+  for (int i = 0; i < pixels.size(); i++) {
+    pixels[i].r /= numFiles;
+    pixels[i].g /= numFiles;
+    pixels[i].b /= numFiles;
+  }
+}
