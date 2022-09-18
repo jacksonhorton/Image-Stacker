@@ -24,6 +24,11 @@ the number of files stacked to get the average red, green, and blue value for ea
 Finally, the program will take the new average values and use them to create an .ppm file.
 This new .ppm should be a cleaner, more clear picture than the old .ppm files.
 
+
+Before (One image)         |  After (10 combined images)
+:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/59177560/190923466-c9890d09-1477-4a58-bbde-b95a29916c2d.png)  |  ![](https://user-images.githubusercontent.com/59177560/190924219-507b501d-c4ce-4767-a354-36b5cc6f70fb.png)
+
 ## Notes
 * We decided to not use a default constructor for every data member in this assignment, 
 because we figured that since most of the data is coming from input, i.e. the user and 
