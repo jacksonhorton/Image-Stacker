@@ -25,10 +25,10 @@ Finally, the program will take the new average values and use them to create an 
 This new .ppm should be a cleaner, more clear picture than the old .ppm files.
 
 ## Notes
-* We decided to not use a constructor for every data member in this assignment, because we
-figured that since most of the data is coming from input, i.e. the user and .ppm files, 
-before calculation are ran we could save time and lines of code but simply not including a
-constructor.
+* We decided to not use a default constructor for every data member in this assignment, 
+because we figured that since most of the data is coming from input, i.e. the user and 
+.ppm files,  we could save time and lines of code by using a parameterized constructor
+instead of a default constructor.
 * We tried coding with 2 people at the same time for the first half of this project, but
 this resulted in code being deleted, erractic behavior from github, and caused confusion.
 So, needless to say we're going to code one person at a time from now on.
