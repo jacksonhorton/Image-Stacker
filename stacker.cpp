@@ -1,3 +1,14 @@
+/**
+ * @file stacker.cpp
+ * @author William Hayes
+ * @date 2022-09-18
+ * @brief This file implements the stacker class's methods
+ * 
+ * This files implemenets the methods for the stacker class,
+ * such as: the parameterized constructor, the read_file method,
+ * the stacker method, etc.
+ */
+
 
 #include <iostream>
 #include <fstream>
@@ -22,18 +33,16 @@ stacker::stacker(string filename, int numFiles) {
 
 string stacker::genSpecificName(string filename, int fileNum) {
   string sfName;
-  // converts the file number to a string.
-  string num = to_string(fileNum);
-
   
-  // if the file number is < 10
-  if(fileNum < 10)
+  string num = to_string(fileNum); //converts the file number to a string
+
+  if(fileNum < 10) //if the fileNum is a single digit integer
     sfName = filename + "/" + filename + "_0" + "0" + num + ".ppm";
-  // if the fileNum is < 100 (and implicitly > 9 based on if statement)
-  else if (fileNum >= 10)
+  
+  else if (fileNum >= 10) //else if fileNum is a double digit integer
     sfName = filename + "/" + filename + "_0" + num + ".ppm";
-  // if the file number is > 99, we assume it to be 3 digits, or < 1000
-  else
+  
+  else //else if fileNum is a triple digit integer
     sfName = filename + "/" + filename + "_" + num + ".ppm";
 
   // returns the specific file name and path based on the filename and current file number given
@@ -44,10 +53,15 @@ string stacker::genSpecificName(string filename, int fileNum) {
 
 void stacker::read_file(int fileIndex) {
   ifstream fin;
-  // the number of the file is always +1 th index.
-  int fileNum = fileIndex + 1;
-  string filepath;
 
+  int rTemp, gTemp, bTemp;
+
+  int i = 0; //counter
+  
+  string filepath;
+  
+  int fileNum = fileIndex + 1; //the number of the file is always the index + 1
+  
   // generates a string of the filepath; passes fileNum which is +1 the file index
   filepath = stacker::genSpecificName(filename, fileNum);
 
@@ -62,18 +76,17 @@ void stacker::read_file(int fileIndex) {
     cout << "Extracting header..." << endl;
     fin >> magic_number >> width >> height >> max_color;
   }
+  
   //for the other files, skip the header
   else {
-    string junk;
+    string junk; //declared junk here, so junk will be deleted once the else statement is completed
+    
     getline(fin, junk);
     getline(fin, junk);
     getline(fin, junk);
   }
 
-  // read in the pixels from the body
-  int r, g, b;
-  int i = 0;  //counter
-  fin >> r >> g >> b;  // priming read
+  fin >> rTemp >> gTemp >> bTemp;  //priming read, reads the rgb pixel values
     
   // read through body; reads each pixel's rgb value into pixels vector
   while (fin) {
@@ -82,22 +95,24 @@ void stacker::read_file(int fileIndex) {
       pixels.push_back(pixel());
     }
     
-    // appends the value 
-    pixels[i].r += r;
-    pixels[i].g += g;
-    pixels[i].b += b;
+    //appends the value 
+    pixels[i].r += rTemp;
+    pixels[i].g += gTemp;
+    pixels[i].b += bTemp;
     
-    fin >> r >> g >> b;  // read next line or break file
-    // increment index counter
-    i++;
+    fin >> rTemp >> gTemp >> bTemp;  //read next line or break file
+    
+    i++; //increment the index counter by one
   }
 
   cout << "Loaded." << endl;
+  
   fin.close();
 }
 
 void stacker::stack() {
-
+  ofstream outFile;
+  
   // read in all files
   for (int i = 0; i < numFiles; i++) {
     read_file(i);
@@ -108,8 +123,7 @@ void stacker::stack() {
 
   cout << "Writing out file: " << filename << ".ppm" << endl;
 
-  //writes out file
-  ofstream outFile;
+  //creates .ppm file as the out put
   outFile.open(filename + ".ppm");
 
   //writes header
