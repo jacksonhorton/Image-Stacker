@@ -2,9 +2,13 @@
  * @file main.cpp
  * @author Kenneth Wallace, William Hayes, Jackson Horton
  * @date 2022-09-15
- * @brief Calls stacker class.
+ * @brief Uses the Stacker class to create cleaner .ppm from a
+ * collection .ppm files.
  * 
- * Stacker class will prompt user for a folder (filename) and number of images n to process, then proceeds to stack n amount of images.
+ * Stacker class will prompt user for a folder (filename) 
+ * and number of images n to process, then proceeds to 
+ * stack n a mount of images. Finally, it creates a new
+ * .ppm file that should give a clearer image.
  */
 
 #include "stacker.h"

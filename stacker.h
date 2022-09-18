@@ -2,9 +2,9 @@
  * @file stacker.h
  * @author Kenneth Wallace, William Hayes, Jackson Horton
  * @date 2022-09-15
- * @brief 
+ * @brief This file declares the Stacker class
  * 
- * 
+ * This file declares the Stacker class and it's data members/methods
  */
 
 #ifndef STACKER_H
@@ -28,7 +28,7 @@ class stacker {
  * 
  *
  * @class pixel stacker.h "GP_2_Image_Stacker/stacker.h"
- * @brief 
+ * @brief the struct pixel will store the integer values for red (r), green (g), and blue (b) color values for each pixel
  *
  */
   struct pixel {
@@ -55,6 +55,7 @@ class stacker {
 
 public:
   stacker(std::string filename, int numFiles);
+  
   void stack();
   void read_file(int fileIndex);
   void average();
