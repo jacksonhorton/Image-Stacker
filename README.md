@@ -10,16 +10,16 @@ Date:9/18/2022
 
 ## Compilation Instructions
 First, compile the program by typing into console "make". Next, run the program by typing
-into console "./stacker". Th user will then be prompted to type in the name of the folder
+into console "./stacker". The user will then be prompted to type in the name of the folder
 or file containing the .ppm files they wish to stack. Next, the user will be prompted as
-to how many files they wish to stack, for a cleaner picture we recommend inputting the max
+to how many files they wish to stack; for a cleaner picture we recommend inputting the max
 number of .ppm files in the file.
 
 ## Program Usage
 This program is meant to take name of the file containing the .ppm files the user wishes to
 stack and the number of files they wish to stack. The program will then generate the 
 appropriate file name; for example, "name/name_001.ppm". It'll then open each .ppm file to
-gather the total red, greed, and blue values for each pixel before dividing those values by
+gather the total red, greed, and blue values for every pixel before dividing the values of every pixel by
 the number of files stacked to get the average red, green, and blue value for each pixel.
 Finally, the program will take the new average values and use them to create an .ppm file.
 This new .ppm should be a cleaner, more clear picture than the old .ppm files.
