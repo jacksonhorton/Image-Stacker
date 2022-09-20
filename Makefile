@@ -20,35 +20,32 @@ CFLAGS = -g -Wall -Wextra
 ## Target Flag variable
 # Contains all targets to fully compile.
 # !! If adding more targets, implement them in targets and add them here so they are compiled. !!
-TARGET = main.o stacker.o
-
-## Remove Flag variable
-RM = rm -i
+TARGET = stacker
 
 
 ### TARGETS
 
-## Default entry
-# Sets the default target to be called when typing 'make'.
-default: all
-
 ## all
+all: 	$(TARGET)
+
+## Target
 # Using $(TARGET) it will link all object (*.o) files.
 # Defines name of output to "stacker".
-all: $(TARGET)
-	$(CC) $(CFLAGS) $(TARGET) -o stacker 
+$(TARGET): 	main.o stacker.o
+	$(CC) $(CFLAGS) -o $(TARGET) main.o stacker.o
 
 ## main.o
 # Requires main.cpp and all header files.
-main.o: main.cpp stacker.h
+main.o: 	main.cpp stacker.h
 	$(CC) $(CFLAGS) -c main.cpp
 
 ## stacker.o
 # Requires stacker header and implementation files.
-stacker.o: stacker.cpp stacker.h
+stacker.o: 	stacker.cpp stacker.h
+	$(CC) $(CFLAGS) -c stacker.cpp
 
 ## clean
 # Removes all unnecessary files including objects (*.o) and emacs backup (*~) files.
 clean:
-	$(RM) *.o *~
+	$(RM) $(TARGET) -f *.o *~ *.ppm
 
