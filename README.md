@@ -1,6 +1,7 @@
 # Image-Stacker
-Names: William Hayes, Kenneth Wallace, and Jackson Horton
-Date:9/18/2022
+Names: William Hayes, Kenneth Wallace, and Jackson Horton 
+<p>Date: 9/18/2022
+</p>
 
 ## Required Files
 * main.cpp - runs the Stacker class methods to create a .ppm file with a cleaner picture
