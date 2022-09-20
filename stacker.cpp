@@ -56,7 +56,7 @@ void stacker::read_file(int fileIndex) {
 
   int rTemp, gTemp, bTemp;
 
-  int i = 0; //counter
+  uint i = 0; //counter
   
   string filepath;
   
@@ -130,7 +130,7 @@ void stacker::stack() {
   outFile << magic_number << "\n" << width << " " << height
 	  << "\n" << max_color << "\n";
   //writes body
-  for (int i = 0; i < pixels.size(); i++) {
+  for (uint i = 0; i < pixels.size(); i++) {
      outFile << pixels[i].r << " " << pixels[i].g << " "
 	     <<  pixels[i].b << "\n";
   }
@@ -139,7 +139,7 @@ void stacker::stack() {
 }
 
 void stacker::average() {
-  for (int i = 0; i < pixels.size(); i++) {
+  for (uint i = 0; i < pixels.size(); i++) {
     pixels[i].r /= numFiles;
     pixels[i].g /= numFiles;
     pixels[i].b /= numFiles;
